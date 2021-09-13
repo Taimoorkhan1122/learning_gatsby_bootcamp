@@ -1,7 +1,18 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+exports.createPages = async ({actions}) => {
+    actions.createPage({
+        path: "dynamic-page",
+        component: require.resolve(`./src/templates/dynamicPage.tsx`),
+        context: {
+            name: 'Taimoor khan',
+            description: "Hey this won't show up until update"
+        }
+    })
+}
 
-// You can delete this file if you're not using it
+exports.onCreatePage = async ({ page, actions }) => {
+  if (page.path.match(/^\/app/i)) {
+    page.matchPath = "/app/*"
+
+    actions.createPage(page)
+  }
+}
