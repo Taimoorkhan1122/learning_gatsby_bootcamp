@@ -7,7 +7,7 @@ const post = ({pageContext}) => {
     return (
       <div>
           <h2>{pageContext.title}</h2>
-          <StaticImage image={image} alt={pageContext.coverImage.description}/>
+          <GatsbyImage image={image} alt={pageContext.coverImage?.description}/>
         <div>{documentToReactComponents(JSON.parse(pageContext.content.raw))}</div>
       </div>
     )
